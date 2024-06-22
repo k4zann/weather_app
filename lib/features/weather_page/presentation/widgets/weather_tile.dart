@@ -1,37 +1,51 @@
-import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/core/constants/app_colors.dart';
-import 'package:weather_app/core/constants/app_text_styles.dart';
 
 class WeatherTile extends StatelessWidget {
   final String city;
+  final double temperature;
+  final String weatherCondition;
 
-  const WeatherTile({super.key, required this.city});
+  const WeatherTile({
+    Key? key,
+    required this.city,
+    this.temperature = 0.0,
+    this.weatherCondition = '',
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: AppColors.backgroundColor(context),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
-            offset: const Offset(0, 3),
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 6,
+            spreadRadius: 1,
           ),
         ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: Text(
-              city,
-              style: AppTextStyles.cityName
-                  .copyWith(color: AppColors.primaryColor(context)),
-              overflow: TextOverflow.ellipsis,
-            ),
+          Text(
+            city,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '${temperature.toStringAsFixed(1)}°C',
+                style: const TextStyle(fontSize: 18),
+              ),
+              Text(
+                weatherCondition,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ],
           ),
         ],
       ),
