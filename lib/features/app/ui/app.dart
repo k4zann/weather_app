@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/core/navigation/app_route_config.dart';
 import 'package:weather_app/features/app/theme_provider.dart';
-import 'package:weather_app/features/weather_page/presentation/pages/city_list_page.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Weather Application',
       theme: ThemeData(
@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       themeMode: Provider.of<ThemeProviderNotifier>(context).themeMode,
-      home: CityListPage(),
+      routerConfig: AppRouter().router,
     );
   }
 }
