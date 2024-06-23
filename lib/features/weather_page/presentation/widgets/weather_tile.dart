@@ -1,3 +1,4 @@
+import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_colors.dart';
 import 'package:weather_app/core/constants/app_text_styles.dart';
@@ -21,24 +22,30 @@ class WeatherInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: AppColors.primaryColor(context),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Row(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('$temperature°', style: AppTextStyles.temperature),
-              const SizedBox(height: 8),
-              Text('$cityName, $countryName', style: AppTextStyles.cityName),
-              const SizedBox(height: 8),
-              Text(weatherCondition, style: AppTextStyles.weatherCondition)
-            ],
+          Expanded(
+            flex: 4,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('$temperature°', style: AppTextStyles.temperature)
+                    .paddingOnly(bottom: 8.0),
+                Text('$cityName, $countryName', style: AppTextStyles.cityName)
+                    .paddingOnly(bottom: 8.0),
+                Text(
+                  weatherCondition,
+                  style: AppTextStyles.weatherCondition,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           Image.network(
             'http:$weatherIcon',
             width: 100,

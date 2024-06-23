@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:awesome_extensions/awesome_extensions.dart';
@@ -63,7 +62,7 @@ class _CityListPageState extends State<CityListPage> {
                     borderRadius: BorderRadius.circular(25),
                     borderSide: BorderSide(color: AppColors.greyLight),
                   ),
-                  fillColor: AppColors.primaryColor(context),
+                  fillColor: AppColors.scaffoldBackgroundColor(context),
                   filled: true,
                   prefixIcon: Icon(Icons.search, color: AppColors.grey),
                 ),
@@ -99,24 +98,26 @@ class _CityListPageState extends State<CityListPage> {
                           final city = searchedList[index];
                           final weather = state.weatherData[city];
                           return InkWell(
-                              onTap: () {
-                                GoRouter.of(context).pushNamed(
-                                    AppRouteConstants.weatherDetails,
-                                    pathParameters: {'city': city});
-                              },
-                              highlightColor: Colors.transparent,
-                              splashColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              child: WeatherInformation(
-                                cityName: city,
-                                countryName: weather?.location?.country ?? '',
-                                temperature:
-                                    weather?.current?.tempC?.toInt() ?? 0,
-                                weatherCondition:
-                                    weather?.current?.condition?.text ?? '',
-                                weatherIcon:
-                                    weather?.current?.condition?.icon ?? '',
-                              )).paddingOnly(bottom: 16.0);
+                            onTap: () {
+                              GoRouter.of(context).pushNamed(
+                                AppRouteConstants.weatherDetails,
+                                pathParameters: {'city': city},
+                              );
+                            },
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            child: WeatherInformation(
+                              cityName: city,
+                              countryName: weather?.location?.country ?? '',
+                              temperature:
+                                  weather?.current?.tempC?.toInt() ?? 0,
+                              weatherCondition:
+                                  weather?.current?.condition?.text ?? '',
+                              weatherIcon:
+                                  weather?.current?.condition?.icon ?? '',
+                            ),
+                          ).paddingOnly(bottom: 16.0);
                         },
                       );
                     } else if (state is WeatherError) {
