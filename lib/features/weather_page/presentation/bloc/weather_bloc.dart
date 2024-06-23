@@ -16,38 +16,42 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<LoadInitialCitiesWeather>(_onLoadInitialCitiesWeather);
   }
 
-  Future<void> _onLoadInitialCitiesWeather(LoadInitialCitiesWeather event, Emitter<WeatherState> emit) async {
-        emit(WeatherLoading());
-        try {
-          final Map<String, CurrentWeatherModel> weatherData = {};
-          for (String city in event.cities) {
-            final currentWeather = await weatherRepository.getCurrentWeather(city);
-            weatherData[city] = currentWeather;
-          }
-          emit(CitiesWeatherLoaded(weatherData));
-        } catch (e) {
-          emit(WeatherError(message: e.toString()));
-        }
-      }
-
-  Future<void> _onGetCurrentWeather(GetCurrentWeather event, Emitter<WeatherState> emit) async {
+  Future<void> _onLoadInitialCitiesWeather(
+      LoadInitialCitiesWeather event, Emitter<WeatherState> emit) async {
     emit(WeatherLoading());
     try {
-      final currentWeather = await weatherRepository.getCurrentWeather(event.city);
+      final Map<String, CurrentWeatherModel> weatherData = {};
+      for (String city in event.cities) {
+        final currentWeather = await weatherRepository.getCurrentWeather(city);
+        weatherData[city] = currentWeather;
+      }
+      emit(CitiesWeatherLoaded(weatherData));
+    } catch (e) {
+      emit(WeatherError(message: e.toString()));
+    }
+  }
+
+  Future<void> _onGetCurrentWeather(
+      GetCurrentWeather event, Emitter<WeatherState> emit) async {
+    emit(WeatherLoading());
+    try {
+      final currentWeather =
+          await weatherRepository.getCurrentWeather(event.city);
       emit(CurrentWeatherLoaded(currentWeather: currentWeather));
     } catch (e) {
       emit(WeatherError(message: e.toString()));
     }
   }
 
-  Future<void> _onGetForecast(GetForecast event, Emitter<WeatherState> emit) async {
+  Future<void> _onGetForecast(
+      GetForecast event, Emitter<WeatherState> emit) async {
     emit(WeatherLoading());
     try {
-      final forecastWeather = await weatherRepository.getForecastWeather(event.city, event.days);
+      final forecastWeather =
+          await weatherRepository.getForecastWeather(event.city, event.days);
       emit(ForecastWeatherLoaded(forecastWeather: forecastWeather));
     } catch (e) {
       emit(WeatherError(message: e.toString()));
     }
   }
 }
-

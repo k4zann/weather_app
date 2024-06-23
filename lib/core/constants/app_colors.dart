@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_app/features/app/theme_provider.dart';
 
 class AppColors {
   static Color primaryColor(BuildContext context) =>
-      Provider.of<ThemeProviderNotifier>(context).isDarkMode
-          ? const Color(0xff2196f3)
-          : AppColors.black;
+      const Color(0xff5936B4);
 
   static Color black = const Color(0xff000000);
 
@@ -27,12 +23,5 @@ class AppColors {
   static Color yellow = const Color(0xffffeb3b);
 
   static Color scaffoldBackgroundColor(BuildContext context) =>
-      Provider.of<ThemeProviderNotifier>(context).isDarkMode
-          ? const Color(0xff141414)
-          : const Color(0xfff7f7f6);
-
-  static Color backgroundColor(BuildContext context) =>
-      Provider.of<ThemeProviderNotifier>(context).isDarkMode
-          ? const Color(0xff272727)
-          : const Color.fromARGB(255, 236, 236, 236);
+      const Color(0xff362A84);
 }
