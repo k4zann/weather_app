@@ -10,17 +10,6 @@ class CurrentWeatherModel {
     current =
         json['current'] != null ? Current.fromJson(json['current']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (location != null) {
-      data['location'] = location!.toJson();
-    }
-    if (current != null) {
-      data['current'] = current!.toJson();
-    }
-    return data;
-  }
 }
 
 class Location {
@@ -54,18 +43,6 @@ class Location {
     localtime = json['localtime'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['region'] = region;
-    data['country'] = country;
-    data['lat'] = lat;
-    data['lon'] = lon;
-    data['tz_id'] = tzId;
-    data['localtime_epoch'] = localtimeEpoch;
-    data['localtime'] = localtime;
-    return data;
-  }
 }
 
 class Current {
@@ -165,41 +142,7 @@ class Current {
     // gustKph = json['gust_kph'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['last_updated_epoch'] = lastUpdatedEpoch;
-    data['last_updated'] = lastUpdated;
-    data['temp_c'] = tempC;
-    data['temp_f'] = tempF;
-    data['is_day'] = isDay;
-    if (condition != null) {
-      data['condition'] = condition!.toJson();
-    }
-    // data['wind_mph'] = windMph;
-    // data['wind_kph'] = windKph;
-    // data['wind_degree'] = windDegree;
-    // data['wind_dir'] = windDir;
-    // data['pressure_mb'] = pressureMb;
-    // data['pressure_in'] = pressureIn;
-    // data['precip_mm'] = precipMm;
-    // data['precip_in'] = precipIn;
-    // data['humidity'] = humidity;
-    // data['cloud'] = cloud;
-    // data['feelslike_c'] = feelslikeC;
-    // data['feelslike_f'] = feelslikeF;
-    // data['windchill_c'] = windchillC;
-    // data['windchill_f'] = windchillF;
-    // data['heatindex_c'] = heatindexC;
-    // data['heatindex_f'] = heatindexF;
-    // data['dewpoint_c'] = dewpointC;
-    // data['dewpoint_f'] = dewpointF;
-    // data['vis_km'] = visKm;
-    // data['vis_miles'] = visMiles;
-    // data['uv'] = uv;
-    // data['gust_mph'] = gustMph;
-    // data['gust_kph'] = gustKph;
-    return data;
-  }
+
 }
 
 class Condition {
@@ -215,11 +158,4 @@ class Condition {
     code = json['code'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['text'] = text;
-    data['icon'] = icon;
-    data['code'] = code;
-    return data;
-  }
 }

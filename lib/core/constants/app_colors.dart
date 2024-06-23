@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primaryColor(BuildContext context) =>
-      const Color(0xff5936B4);
+  static Color primaryColor(BuildContext context) => const Color(0xff5936B4);
+
+  static Color secondaryColor(BuildContext context) => const Color(0xff1E1656);
 
   static Color black = const Color(0xff000000);
 
