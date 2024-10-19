@@ -23,6 +23,9 @@ WeatherApp is a Flutter application that provides detailed weather information f
 
 ## Getting Started
 
+Environment:
+   - flutter version: 3.19.0
+
 To get started with the project, follow these steps:
 
 1. **Clone the Repository**:
